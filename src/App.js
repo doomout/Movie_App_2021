@@ -1,4 +1,34 @@
 import React from 'react';
+
+class App extends React.Component {
+  //반드시 클래스형 컴포넌트 안에서 소문자로 state  입력
+  state ={
+    count: 0,
+  }
+  add = () => {
+    console.log('add');
+  }
+
+  minus = () => {
+    console.log('minus');
+  }
+
+  //클래스 형에서는 render()이 반환 함수다.
+  render() {
+    return (
+      <div>
+        <h1>The number is: {this.state.count}</h1>
+        <button onClick={this.add}>Add</button>
+        <button onClick={this.minus}>Minus</button>
+      </div>
+    );
+  }
+}
+
+export default App;
+
+
+/*
 import PropTypes from 'prop-types';
 
 //인자를 받는다
@@ -44,4 +74,9 @@ function App() {
   );
 }
 
-export default App;
+Food.propTypes = {
+  name: PropTypes.string.isRequired,
+  picture: PropTypes.string.isRequired,
+  rating: PropTypes.number,
+}  
+*/
