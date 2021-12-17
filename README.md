@@ -1,3 +1,3 @@
 # Movie App 2021
 
-React JS Fundamentals Course 2021
+리액트 영화앱 만들기 공부

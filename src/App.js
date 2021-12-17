@@ -1,20 +1,47 @@
 import React from 'react';
 
 class App extends React.Component {
+  //이 함수가 render() 보다 먼저 실행된다.(생성자?)
+  constructor(props) {
+    super(props);
+    
+    console.log('hello');
+  }
+
+  componentDidMount() {
+    console.log('component rendered');
+  }
+
   //반드시 클래스형 컴포넌트 안에서 소문자로 state  입력
   state ={
     count: 0,
   }
   add = () => {
-    console.log('add');
+    //{} 사이에 띄어쓰기를 앞뒤로 해줘야 한다
+    //current에 현재 state가 넘어온다.
+    this.setState(current =>  ({ 
+      count: this.state.count + 1, 
+    }) ); 
   }
 
   minus = () => {
-    console.log('minus');
+    //current에 현재 state가 넘어온다.
+    this.setState(current =>  ({ 
+      count: this.state.count - 1,  //끝에 ,는 넣어도 되고 안넣어도 된다.
+    }) ); 
+  }
+
+  componentDidUpdate() {
+    console.log('I just updated');
+  }
+
+  componentWillUnmount() {
+    console.log('Goodbye, cruel world');
   }
 
   //클래스 형에서는 render()이 반환 함수다.
   render() {
+    console.log('render')
     return (
       <div>
         <h1>The number is: {this.state.count}</h1>
