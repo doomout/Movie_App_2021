@@ -8,14 +8,17 @@ class App extends React.Component {
     movies: [], //영화 데이터가 저장될 배열
   }
   //데이터 흐름
-  //render()로 로딩중 표시 하는 동안 getMovies에 데이터 저장한 뒤 componentDidMount()로 데이터 호출
+  //render()로 로딩중 표시 하는 동안 
+  //getMovies에 데이터 저장한 뒤 
+  //componentDidMount()로 데이터 호출
 
-  //async : 자바 스크립트에게 getMovies() 함수는 시간이 필요하고 (비동기)
+  //async : getMovies() 함수는 비동기 함수라고 선언
   getMovies = async () => {
-    //await : axios.get()의 실행을 기다려달라고 알려줌 
+    //await : axios.get()는 작업이 끝날때까지 기다려 달라고 선언 
     const movies = await axios.get('https://yts-proxy.now.sh/list_movies.json');
   }
 
+  //render()는 로딩중으로 표시 되는 동안 비동기 함수인 getMovies() 실행
   componentDidMount() {
     this.getMovies();
   }
