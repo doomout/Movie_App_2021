@@ -1,5 +1,6 @@
 import React from 'react';
 import axios from 'axios';
+import Movie from './Movie';
 
 class App extends React.Component {
   //상태 부분
@@ -18,7 +19,7 @@ class App extends React.Component {
       data: {
         data: { movies },
       },
-    } = await axios.get('https://yts-proxy.now.sh/list_movies.json');  //await : axios.get()는 작업이 끝날때까지 기다려 달라고 선언 
+    } = await axios.get('https://yts-proxy.now.sh/list_movies.json?sort_by=rating');  //await : axios.get()는 작업이 끝날때까지 기다려 달라고 선언, 평점 정렬 부분 추가 
     //state에 있는 변수 : 구조 분해 할당의 변수 
     // this.setState({ movies: movies }); 
     
@@ -35,10 +36,23 @@ class App extends React.Component {
   //클래스 형에서는 render()이 반환 함수다.
   render() {
     //로딩중 상태
-    const { isLoading } = this.state;
+    const { isLoading, movies } = this.state;
 
-    //로딩 중 or 준비 완료 상태 (삼항 연산자)
-    return <div>{isLoading ? 'Loading...' : 'We are ready'}</div>;
+    //로딩 중 or movies데이터 출력 (삼항 연산자)
+    return (<div>{isLoading ? 'Loading...' : movies.map((movies) => {
+          //console.log(movies);
+          return <Movie
+            key={movies.id} //key props는 유일해야 하므로 id를 활용
+            id={movies.id}
+            year={movies.year}
+            title={movies.title}
+            summary={movies.summary}
+            poster={movies.medium_cover_image} //이미지 URL
+          />; //Mavie 컴포넌트 출력
+        }
+      )}
+      </div>
+    );
   }
 }
 
