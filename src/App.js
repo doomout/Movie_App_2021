@@ -14,8 +14,17 @@ class App extends React.Component {
 
   //async : getMovies() 함수는 비동기 함수라고 선언
   getMovies = async () => {
-    //await : axios.get()는 작업이 끝날때까지 기다려 달라고 선언 
-    const movies = await axios.get('https://yts-proxy.now.sh/list_movies.json');
+    const {  //movies.data.data.movies를 구조 분해 할당 방식으로 변경 이게 더 헷깔리는데?
+      data: {
+        data: { movies },
+      },
+    } = await axios.get('https://yts-proxy.now.sh/list_movies.json');  //await : axios.get()는 작업이 끝날때까지 기다려 달라고 선언 
+    //state에 있는 변수 : 구조 분해 할당의 변수 
+    // this.setState({ movies: movies }); 
+    
+    //state에 있는 변수 : 구조 분해 할당의 변수 이름이 같다면 축약할 수 있다.
+    //로딩중 상태를 바꾸기 위해 isLoading: false로 변경
+    this.setState({ movies, isLoading: false });
   }
 
   //render()는 로딩중으로 표시 되는 동안 비동기 함수인 getMovies() 실행
