@@ -1,4 +1,5 @@
 import React from 'react';
+import axios from 'axios';
 
 class App extends React.Component {
   //상태 부분
@@ -6,17 +7,17 @@ class App extends React.Component {
     isLoading: true, //영화 앱 로딩 중 상태 변수
     movies: [], //영화 데이터가 저장될 배열
   }
+  //데이터 흐름
+  //render()로 로딩중 표시 하는 동안 getMovies에 데이터 저장한 뒤 componentDidMount()로 데이터 호출
 
-  componentDidMount() {
-    //isLoading 함수를 6초 뒤에 false 로 상태 변경, 
-    //Loading... =>  We are ready 로 변경
-    setTimeout(() => {
-      this.setState({ isLoading: false });
-    }, 6000 );
+  //async : 자바 스크립트에게 getMovies() 함수는 시간이 필요하고 (비동기)
+  getMovies = async () => {
+    //await : axios.get()의 실행을 기다려달라고 알려줌 
+    const movies = await axios.get('https://yts-proxy.now.sh/list_movies.json');
   }
 
   componentDidMount() {
-    //영화 데이터 로딩!
+    this.getMovies();
   }
 
   //클래스 형에서는 render()이 반환 함수다.
