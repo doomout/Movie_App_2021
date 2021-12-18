@@ -39,19 +39,26 @@ class App extends React.Component {
     const { isLoading, movies } = this.state;
 
     //로딩 중 or movies데이터 출력 (삼항 연산자)
-    return (<div>{isLoading ? 'Loading...' : movies.map((movies) => {
-          //console.log(movies);
-          return <Movie
-            key={movies.id} //key props는 유일해야 하므로 id를 활용
-            id={movies.id}
-            year={movies.year}
-            title={movies.title}
-            summary={movies.summary}
-            poster={movies.medium_cover_image} //이미지 URL
-          />; //Mavie 컴포넌트 출력
-        }
-      )}
+    return (<section class='container'>
+      {isLoading ? (
+        <div class='loader'>
+          <span class="loader__text">Loading...</span>
+        </div>
+        ) : (
+          <div class="movies">
+          {movies.map(movies => (
+            <Movie
+              key={movies.id} //key props는 유일해야 하므로 id를 활용
+              id={movies.id}
+              year={movies.year}
+              title={movies.title}
+              summary={movies.summary}
+              poster={movies.medium_cover_image} //이미지 URL
+            /> //Movie 컴포넌트 출력
+          ))}
       </div>
+      )}
+      </section>
     );
   }
 }
