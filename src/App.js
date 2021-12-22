@@ -40,13 +40,14 @@ class App extends React.Component {
     const { isLoading, movies } = this.state;
 
     //로딩 중 or movies데이터 출력 (삼항 연산자)
-    return (<section class='container'>
+    //class -> className으로 변경(HTML과 JSX의 class이름이 겹치기에 className으로 변경)
+    return (<section className='container'>
       {isLoading ? (
-        <div class='loader'>
-          <span class="loader__text">Loading...</span>
+        <div className='loader'>
+          <span className="loader__text">Loading...</span>
         </div>
         ) : (
-          <div class="movies">
+          <div className="movies">
           {movies.map(movies => (
             <Movie
               key={movies.id} //key props는 유일해야 하므로 id를 활용
@@ -55,6 +56,7 @@ class App extends React.Component {
               title={movies.title}
               summary={movies.summary}
               poster={movies.medium_cover_image} //이미지 URL
+              genres={movies.genres}
             /> //Movie 컴포넌트 출력
           ))}
       </div>
