@@ -4,7 +4,7 @@ import { HashRouter, Route } from 'react-router-dom';
 import About from './routes/About';
 import Home from './routes/Home';
 import Navigation from './components/Navigation';
-//import Detail from './routes/Detail';
+import Detail from './routes/Detail';
 
 
 //Route를 사용하기 위해선 npm install react-router-dom@5 으로 5 버전을 써야 한다
@@ -15,6 +15,7 @@ function App() {
       <Navigation />
       <Route path="/" exact={true} component={Home} />
       <Route path="/about" component={About} />
+      <Route path="/movie-detail" component={Detail} />
     </HashRouter>
   );
 }

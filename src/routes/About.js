@@ -5,9 +5,9 @@ function About() {
     return (
         <div className="about__container">
             <span>
-            “Freedom is the freedom to say that two plus two make four. If that is granted, all else follows.”
+            ““자유는 2 더하기 2가 4라고 말할 수 있는 자유입니다. 그것이 허용되면 다른 모든 것이 따릅니다.”
             </span>   
-            <span>- George Orwell, 1984</span>   
+            <span>- 조지 오웰, 1984</span>   
         </div>
     );
 }
